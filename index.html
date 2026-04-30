@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
@@ -9,7 +10,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#">Juegos</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -32,40 +33,159 @@
     </div>
   </nav>
   <div class="container">
+    <div class="text-center my-5">
+    <img src="fortnite_chapter_2_leak_2-1.gif" 
+        alt="gif inicio" 
+        class="img-fluid rounded">
+    </div>
     <section id="juego1" class="game-section">
       <h2 class="game-title">Juego 1 Contador Interactivo</h2>
       <div class="card p-4 text-center">
         <h1 id="contador-valor" class="display-1 fw-bold">0</h1>
         <div class="d-flex justify-content-center gap-3 mt-3">
-          <button class="btn btn-danger btn-lg" onclick="restar()">− Restar</button>
-          <button class="btn btn-secondary btn-lg" onclick="resetContador()">Reset</button>
-          <button class="btn btn-success btn-lg" onclick="sumar()">+ Sumar</button>
+          <button class="btn  btn-lg" onclick="restar()">− Restar</button>
+          <button class="btn btn-lg" onclick="resetContador()">Reset</button>
+          <button class="btn btn-lg" onclick="sumar()">+ Sumar</button>
         </div>
       </div>
     </section>
-     <section id="juego2" class="game-section">
-      <h2 class="game-title">Juego 2 Adivina el Numero</h2>
-      <div class="card p-4">
-        <p class="text-muted">Adivina un número entre 1 y 100</p>
-        <div class="d-flex gap-2 mb-3">
-          <input type="number" id="adivina-input" class="form-control" placeholder="Tu número..." min="1" max="100">
-          <button class="btn btn-primary" onclick="adivinar()">Adivinar</button>
-        </div>
-        <p id="adivina-mensaje" class="fw-bold"></p>
-        <p id="adivina-intentos" class="text-muted">Intentos restantes: <span id="intentos-restantes">5</span></p>
-        <button class="btn btn-outline-secondary btn-sm" onclick="reiniciarAdivina()">Nuevo juego</button>
+    <section id="juego2" class="game-section">
+    <h2 class="game-title">Juego 2 Adivina el Numero</h2>
+    <div class="card p-4">
+      <p class="text-muted">Adivina un número entre 1 y 100</p>
+      <div class="d-flex gap-2 mb-3">
+        <input type="number" id="adivina-input" class="form-control" placeholder="Tu número..." min="1" max="100">
+        <button class="btn" onclick="adivinar()">Adivinar</button>
       </div>
-    </section id-="juego3"class="game-section">
-    <h2 class="game-title"> Juego 3 priedra papel y tijeras
-    </h2>
-    
-    <section>
+      <p id="adivina-mensaje" class="fw-bold"></p>
+      <p id="adivina-intentos" class="text-muted">Intentos restantes: <span id="intentos-restantes">5</span></p>
+      <button class="btn btn-sm" onclick="reiniciarAdivina()">Nuevo juego</button>
+    </div>
+  </section>
+  <section id="juego3" class="game-section">
+    <h2 class="game-title">Juego 3 Piedra, Papel o Tijeras</h2>
+    <div class="card p-4">
+      <p class="text-center">Haz tu jugada</p>
+      <div class="d-flex justify-content-center gap-3 mb-3">
+        <button class="btn btn-lg" onclick="jugarPPT('piedra')">Piedra</button>
+        <button class="btn btn-lg" onclick="jugarPPT('papel')">Papel</button>
+        <button class="btn btn-lg" onclick="jugarPPT('tijera')">Tijera</button>
+      </div>
+      <p id="ppt-resultado" class="fw-bold fs-5"></p>
+      <p id="ppt-detalle" class="text-muted"></p>
+    </div>
+  </section>
+
+    <section id="juego4" class="game-section">
+      <h2 class="game-title"> Juego 4 juego de reacion</h2>
+      <div class="card p-4">
+        <div class="card p-4 text-center">
+        <p class="text-muted">Haz click en el botón cuando cambie a verde.</p>
+        <div id="reaccion-box" class="reaccion-box mx-auto mb-3" onclick="clickReaccion()">
+          <span id="reaccion-texto">Haz click para empezar</span>
+        </div>
+        <p id="reaccion-resultado" class="fw-bold fs-5"></p>
+        <button class="btn btn-outline btn-sm" onclick="iniciarReaccion()">Reiniciar</button>
+      </div>
+    </section>
+
+    <section id="juego5" class="game-section">
+      <h2 class="game-title">Juego 5 trivia</h2>
+      <div class="card p-4">
+        <div id="trivia-contenedor">
+          <p id="trivia-pregunta" class="fw-bold fs-5"></p>
+          <div id="trivia-opciones" class="d-grid gap-2 mb-3"></div>
+          <p id="trivia-feedback" class="fw-bold"></p>
+        </div>
+        <p id="trivia-puntaje" class="text-muted mt-2"></p>
+        <button id="trivia-siguiente" class="btn btn-primary mt-2 d-none" onclick="siguientePregunta()">Siguiente</button>
+        <button id="trivia-reiniciar" class="btn btn-outline-secondary mt-2 d-none" onclick="reiniciarTrivia()">Jugar de nuevo</button>
+      </div>
+    </section>
+
+    <section id="juego6" class="game-section">
+      <h2 class="game-title"> Juego 6 Juego de reflejos</h2>
+      <div class="card p-4">
+         <p class="text-muted">Haz click en los círculos antes de que desaparezcan. Tienes 30 segundos.</p>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>Puntaje: <strong id="reflejos-puntaje">0</strong></span>
+            <span>Tiempo: <strong id="reflejos-tiempo">30</strong>s</span>
+          </div>
+        <div id="reflejos-area" class="reflejos-area border rounded mb-3 position-relative">
+
+        </div>
+        <button id="reflejos-btn" class="btn" onclick="iniciarReflejos()">Iniciar</button>
+        <p id="reflejos-resultado" class="fw-bold mt-2"></p>
+      </div>
+    </section>
+
+    <section id="juego7" class="game-section">
+      <h2 class="game-title"> Juego 7 Preguntas rápidas con temporizador</h2>
+      <div class="card p-4">
+        <div id="rapidas-contenedor">
+          <div class="d-flex justify-content-between mb-2">
+            <span id="rapidas-num"></span>
+            <span>Tiempo: <strong id="rapidas-tiempo">10</strong>s</span>
+          </div>
+          <div class="progress mb-3">
+            <div id="rapidas-barra" class="progress-bar" style="width:100%"></div>
+          </div>
+          <p id="rapidas-pregunta" class="fw-bold fs-5"></p>
+          <div class="d-flex gap-2">
+            <input type="text" id="rapidas-input" class="form-control" placeholder="Tu respuesta...">
+            <button class="btn btn" onclick="responderRapida()">OK</button>
+          </div>
+          <p id="rapidas-feedback" class="fw-bold mt-2"></p>
+        </div>
+        <p id="rapidas-final" class="fw-bold fs-5 d-none"></p>
+        <button id="rapidas-reiniciar" class="btn btn-outline mt-2 d-none" onclick="reiniciarRapidas()">Jugar de nuevo</button>
+      </div>
+    </section>
+
+    <section id="juego8" class="game-section">
+      <h2 class="game-title"> Juego 8 Tic Tac Toe
+      </h2>
+      <div class="card p-4">
+        <p id="ttt-turno" class="fw-bold fs-5 mb-3">Turno de X</p>
+        <div id="ttt-tablero" class="ttt-tablero mx-auto mb-3"></div>
+        <p id="ttt-resultado" class="fw-bold fs-4"></p>
+        <button class="btn btn-outline mt-2" onclick="reiniciarTTT()">Nuevo juego</button>
+      </div>
+    </section>
+
+    <section id="juego9" class="game-section">
+      <h2 class="game-title"> Juego 9 Snake
+      </h2>
+      <div class="card p-4">
+        <p class="text-muted">Usa las teclas de dirección para mover la serpiente.</p>
+        <p>Puntaje: <strong id="snake-puntaje">0</strong></p>
+        <canvas id="snake-canvas" width="400" height="400" class="border mx-auto d-block mb-3"></canvas>
+        <button id="snake-btn" class="btn" onclick="iniciarSnake()">Iniciar</button>
+        <p id="snake-resultado" class="fw-bold mt-2"></p>
+      </div>
+    </section>
+
+    <section id="juego10" class="game-section">
+      <h2 class="game-title"> Juego 10 Whack-a-mole
+      </h2>
+      <div class="card p-4">
+        <p class="text-muted">Haz click en los topos antes de que se escondan. Tienes 30 segundos.</p>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Puntaje: <strong id="wam-puntaje">0</strong></span>
+          <span>Tiempo: <strong id="wam-tiempo">30</strong>s</span>
+        </div>
+        <div id="wam-grid" class="wam-grid mx-auto mb-3"></div>
+        <button id="wam-btn" class="btn" onclick="iniciarWAM()">Iniciar</button>
+        <p id="wam-resultado" class="fw-bold mt-2"></p>
+      </div>
+    </section>
+
 
     </section>
   </div>
   
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
